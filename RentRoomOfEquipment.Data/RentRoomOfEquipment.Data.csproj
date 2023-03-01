@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\RentRoomOfEquipment.Entity\RentRoomOfEquipment.Entity.csproj" />
+	  <ProjectReference Include="..\RentRoomOfEquipment.Models\RentRoomOfEquipment.Models.csproj" />
+  </ItemGroup>
+
+</Project>
