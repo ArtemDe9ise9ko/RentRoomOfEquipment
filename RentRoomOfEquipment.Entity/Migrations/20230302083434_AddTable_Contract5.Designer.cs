@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RentRoomOfEquipment.Entity;
 
@@ -10,9 +11,11 @@ using RentRoomOfEquipment.Entity;
 namespace RentRoomOfEquipment.Entity.Migrations
 {
     [DbContext(typeof(ROEContext))]
-    partial class AppContextModelSnapshot : ModelSnapshot
+    [Migration("20230302083434_AddTable_Contract5")]
+    partial class AddTable_Contract5
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

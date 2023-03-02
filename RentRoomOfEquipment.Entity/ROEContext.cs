@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using RentRoomOfEquipment.Models.Contract;
-using RentRoomOfEquipment.Models.Equipment;
-using RentRoomOfEquipment.Models.Room;
+using RentRoomOfEquipment.Models.Contracts;
+using RentRoomOfEquipment.Models.Equipments;
+using RentRoomOfEquipment.Models.Rooms;
 
 namespace RentRoomOfEquipment.Entity
 {
@@ -10,7 +10,6 @@ namespace RentRoomOfEquipment.Entity
         public DbSet<Equipment> Equipments { get; set; }
         public DbSet<Room> Rooms { get; set; }
         public DbSet<Contract> Contracts { get; set; }
-
         public ROEContext(DbContextOptions<ROEContext> options): base(options) { }
 
 

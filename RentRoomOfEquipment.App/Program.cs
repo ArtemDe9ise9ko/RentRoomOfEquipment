@@ -24,7 +24,6 @@ internal class Program
             }
         }
 
-
         host.Run();
     }
 

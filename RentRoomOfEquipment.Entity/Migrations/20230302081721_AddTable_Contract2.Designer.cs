@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RentRoomOfEquipment.Entity;
 
@@ -10,9 +11,11 @@ using RentRoomOfEquipment.Entity;
 namespace RentRoomOfEquipment.Entity.Migrations
 {
     [DbContext(typeof(ROEContext))]
-    partial class AppContextModelSnapshot : ModelSnapshot
+    [Migration("20230302081721_AddTable_Contract2")]
+    partial class AddTable_Contract2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -30,12 +33,6 @@ namespace RentRoomOfEquipment.Entity.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("CountOfEquipment")
-                        .HasColumnType("int");
-
-                    b.Property<int>("EquipmentId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("RoomId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");

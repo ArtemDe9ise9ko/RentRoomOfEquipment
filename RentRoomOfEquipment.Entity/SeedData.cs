@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using RentRoomOfEquipment.Models.Equipment;
-using RentRoomOfEquipment.Models.Room;
+using RentRoomOfEquipment.Models.Equipments;
+using RentRoomOfEquipment.Models.Rooms;
 
 namespace RentRoomOfEquipment.Entity
 {
