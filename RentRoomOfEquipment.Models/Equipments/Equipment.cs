@@ -1,7 +1,6 @@
 ﻿using RentRoomOfEquipment.Models.Base;
-using System.ComponentModel.DataAnnotations.Schema;
 
-namespace RentRoomOfEquipment.Models.Equipment
+namespace RentRoomOfEquipment.Models.Equipments
 {
     public class Equipment : BaseId<int>
     {

@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using RentRoomOfEquipment.Data.Contracts;
-using RentRoomOfEquipment.Models.Contract;
+using RentRoomOfEquipment.Models.Contracts;
 
 namespace RentRoomOfEquipment.App.Controllers
 {
@@ -10,6 +10,7 @@ namespace RentRoomOfEquipment.App.Controllers
     {
         IRentRoomService _rentRoomService;
         private readonly ILogger<RentContractController> _logger;
+        const string APIKEY = "XApiKey";
         public RentContractController(IRentRoomService rentRoomService, ILogger<RentContractController> logger)
         {
             _rentRoomService = rentRoomService;
@@ -17,9 +18,10 @@ namespace RentRoomOfEquipment.App.Controllers
         }
 
         [HttpGet, Route("contracts")]
-        public List<Contract> GetAll()
+        public List<ContractDto> GetAll()
         {
             _logger.LogDebug("Getting all contracts for DB");
+
             return _rentRoomService.GetAllContracts();
         }
 

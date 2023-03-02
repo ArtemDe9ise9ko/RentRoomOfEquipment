@@ -21,9 +21,9 @@ namespace RentRoomOfEquipment.Entity
 
         private DbSet<T> DbSet { get; }
 
-        public IEnumerable<T> GetAll()
+        public List<T> GetAll()
         {
-            return this.DbSet;
+            return this.DbSet.ToList();
         }
         public T? GetById(int id)
         {
@@ -64,7 +64,7 @@ namespace RentRoomOfEquipment.Entity
     }
     public interface IRepository<T> where T : BaseId<int>
     {
-        IEnumerable<T> GetAll();
+        List<T> GetAll();
         T? GetById(int id);
         void Add(T entity);
         void Update(T entity);

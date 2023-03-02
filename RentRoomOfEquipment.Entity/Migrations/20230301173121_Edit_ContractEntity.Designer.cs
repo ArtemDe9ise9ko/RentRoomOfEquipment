@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RentRoomOfEquipment.Entity;
 
@@ -10,9 +11,11 @@ using RentRoomOfEquipment.Entity;
 namespace RentRoomOfEquipment.Entity.Migrations
 {
     [DbContext(typeof(ROEContext))]
-    partial class AppContextModelSnapshot : ModelSnapshot
+    [Migration("20230301173121_Edit_ContractEntity")]
+    partial class Edit_ContractEntity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,7 +24,7 @@ namespace RentRoomOfEquipment.Entity.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("RentRoomOfEquipment.Models.Contracts.Contract", b =>
+            modelBuilder.Entity("RentRoomOfEquipment.Models.Contract.Contract", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -43,7 +46,7 @@ namespace RentRoomOfEquipment.Entity.Migrations
                     b.ToTable("Contracts");
                 });
 
-            modelBuilder.Entity("RentRoomOfEquipment.Models.Equipments.Equipment", b =>
+            modelBuilder.Entity("RentRoomOfEquipment.Models.Equipment.Equipment", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -63,7 +66,7 @@ namespace RentRoomOfEquipment.Entity.Migrations
                     b.ToTable("Equipments");
                 });
 
-            modelBuilder.Entity("RentRoomOfEquipment.Models.Rooms.Room", b =>
+            modelBuilder.Entity("RentRoomOfEquipment.Models.Room.Room", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()

@@ -2,9 +2,9 @@
 using Moq;
 using RentRoomOfEquipment.Data.Contracts;
 using RentRoomOfEquipment.Entity;
-using RentRoomOfEquipment.Models.Contract;
-using RentRoomOfEquipment.Models.Equipment;
-using RentRoomOfEquipment.Models.Room;
+using RentRoomOfEquipment.Models.Contracts;
+using RentRoomOfEquipment.Models.Equipments;
+using RentRoomOfEquipment.Models.Rooms;
 using Xunit;
 
 namespace RentRoomOfEquipment.UnitTests
@@ -37,8 +37,10 @@ namespace RentRoomOfEquipment.UnitTests
         public void GetAllContractsTest()
         {
             contractsMock.Setup(repo => repo.GetAll()).Returns(GetContracts());
+            roomsMock.Setup(repo => repo.GetById(1)).Returns(room1);
+            equipmentsMock.Setup(repo => repo.GetById(1)).Returns(equipment1);
 
-            List<Contract> result = service.GetAllContracts() as List<Contract>;
+            List<ContractDto> result = service.GetAllContracts() as List<ContractDto>;
 
             Assert.NotNull(result);
         }
@@ -71,15 +73,9 @@ namespace RentRoomOfEquipment.UnitTests
                 new Contract() 
                 { 
                 Id = 1,
-                Room = room1, 
-                Equipment = equipment1,
+                RoomId = 1,
+                EquipmentId = 1,
                 CountOfEquipment = 2
-                },
-                new Contract() { 
-                Id = 2,
-                Room = room2, 
-                Equipment = equipment2,
-                CountOfEquipment = 5
                 }
             };
         }

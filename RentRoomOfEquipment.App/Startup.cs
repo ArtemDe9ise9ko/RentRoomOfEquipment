@@ -14,7 +14,7 @@ public class Startup
         services.AddControllers();
         services.AddSwaggerGen();
         services.AddEndpointsApiExplorer();
-        services.AddDbContext<ROEContext>(options => options.UseSqlServer(Configuration.GetConnectionString("RentRoomOfEquipmentContext")));
+        services.AddDbContext<ROEContext>(options => options.UseSqlServer(Configuration.GetConnectionString("RentRoomOfEquipmentContextAzure")));
 
         RegisterServices(services);
     }
@@ -35,6 +35,7 @@ public class Startup
 
          app.UseSwagger();
          app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "RentRoomOfEquipment"));
+
          app.UseRouting();
 
          app.UseEndpoints(endpoints =>
