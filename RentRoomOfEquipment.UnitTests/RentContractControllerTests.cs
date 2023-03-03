@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Moq;
 using RentRoomOfEquipment.App.Controllers;
@@ -12,14 +13,14 @@ namespace RentRoomOfEquipment.UnitTests
     {
         Mock<IRentRoomService> rentRoomServiceMock;
         Mock<ILogger<RentContractController>> loggerMock;
-
+        Mock<IConfiguration> configurationMock;
         RentContractController controller;
         public RentContractControllerTests()
         {
             rentRoomServiceMock = new Mock<IRentRoomService>();
             loggerMock =  new Mock<ILogger<RentContractController>>();
-
-            controller = new RentContractController(rentRoomServiceMock.Object, loggerMock.Object);
+            configurationMock = new Mock<IConfiguration>();
+            controller = new RentContractController(rentRoomServiceMock.Object, loggerMock.Object, configurationMock.Object);
         }
 
         [Fact]
@@ -27,9 +28,9 @@ namespace RentRoomOfEquipment.UnitTests
         {
             rentRoomServiceMock.Setup(repo => repo.GetAllContracts()).Returns(GetContracts());
 
-            var result = controller.GetAll();
+            var result = controller.GetAll("X-Api-Key");
 
-            Assert.NotNull(result);
+            Assert.IsType<OkResult>(result);
         }
 
         [Fact]
@@ -37,7 +38,7 @@ namespace RentRoomOfEquipment.UnitTests
         {
             rentRoomServiceMock.Setup(repo => repo.TryCreateConract(1,1,2)).Returns(true);
 
-            var result = controller.Create(1,1,2);
+            var result = controller.Create("XXX", 1,1,2);
 
            Assert.IsType<OkResult>(result);
         }

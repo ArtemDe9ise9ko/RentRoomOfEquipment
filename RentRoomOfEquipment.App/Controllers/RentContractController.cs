@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using RentRoomOfEquipment.Data.Contracts;
-using RentRoomOfEquipment.Models.Contracts;
 
 namespace RentRoomOfEquipment.App.Controllers
 {
@@ -10,24 +9,33 @@ namespace RentRoomOfEquipment.App.Controllers
     {
         IRentRoomService _rentRoomService;
         private readonly ILogger<RentContractController> _logger;
-        const string APIKEY = "XApiKey";
-        public RentContractController(IRentRoomService rentRoomService, ILogger<RentContractController> logger)
+        private const string API_KEY_HEADER = "XXX";
+        private readonly IConfiguration _configuration;
+        public RentContractController(IRentRoomService rentRoomService, ILogger<RentContractController> logger, IConfiguration configuration)
         {
             _rentRoomService = rentRoomService;
             _logger = logger;
+            _configuration = configuration;
         }
 
         [HttpGet, Route("contracts")]
-        public List<ContractDto> GetAll()
+        public IActionResult GetAll([FromHeader(Name = "WriteKey")] string apiKey)
         {
+            if (apiKey != API_KEY_HEADER)
+                return Unauthorized();
+
+
             _logger.LogDebug("Getting all contracts for DB");
 
-            return _rentRoomService.GetAllContracts();
+            return Ok(_rentRoomService.GetAllContracts());
         }
 
         [HttpPost, Route("create")]
-        public IActionResult Create(int areaId, int equipmentId, int countOfEquipment)
+        public IActionResult Create([FromHeader(Name = "WriteKey")] string apiKey, int areaId, int equipmentId, int countOfEquipment)
         {
+            if (!ApiKeyIsValid(apiKey))
+                return Unauthorized();
+
             try
             {
                 return _rentRoomService.TryCreateConract(areaId, equipmentId, countOfEquipment) ? Ok() : BadRequest();
@@ -37,6 +45,11 @@ namespace RentRoomOfEquipment.App.Controllers
                 _logger.LogError(ex, ex.Message);
                 return BadRequest(ex.Message);
             }
+        }
+        private bool ApiKeyIsValid(string apiKey)
+        {
+            var validApiKey = _configuration.GetValue<string>("ApiKey");
+            return !string.IsNullOrEmpty(apiKey) && apiKey.Equals(validApiKey);
         }
     }
 }
