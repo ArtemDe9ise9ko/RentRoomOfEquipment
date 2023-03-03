@@ -14,7 +14,7 @@ public class Startup
         services.AddControllers();
         services.AddSwaggerGen();
         services.AddEndpointsApiExplorer();
-        services.AddDbContext<ROEContext>(options => options.UseSqlServer(Configuration.GetConnectionString("RentRoomOfEquipmentContextAzure")));
+        services.AddDbContext<ROEContext>(options => options.UseSqlServer(Configuration.GetConnectionString("RentRoomOfEquipmentContextLocal")));
 
         RegisterServices(services);
     }
